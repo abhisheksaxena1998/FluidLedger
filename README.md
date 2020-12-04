@@ -7,3 +7,7 @@ Google Collab link: https://colab.research.google.com/github/abhisheksaxena1998/
 ![performance](/Images/variationt.png)
 
 ![screenshot](/Images/variationte.png)
+
+## Features with most weightage
+
+![performance](/Images/most.png)
