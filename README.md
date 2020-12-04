@@ -6,13 +6,15 @@ Google Collab link: https://colab.research.google.com/github/abhisheksaxena1998/
 
 ## Dataset Description
 
-Dataset contains information about blood donors of the Blood Transfusion Service Center
+    Dataset contains information about blood donors of the Blood Transfusion Service Center
 
-Recency (months): Number of months since last donation.
-Frequency (times): Total number of donations.
-Monetary (c.c. blood): Total blood donated in c.c.
-Time (months): Number of months since first donation.
-whether he/she donated blood in March 2007: Target class.
+Test URL | Result (Target)
+------------ | -------------
+Recency (months): | Number of months since last donation.
+Frequency (times): | Total number of donations.
+Monetary (c.c. blood): | Total blood donated in c.c.
+Time (months): | Number of months since first donation.
+Target: | whether he/she donated blood in March 2007.
 
 ## Classifier Performance
 
