@@ -4,6 +4,8 @@
 
 Google Collab link: https://colab.research.google.com/github/abhisheksaxena1998/FluidLedger/blob/master/SerumLedger.ipynb
 
+Dataset URL: https://archive.ics.uci.edu/ml/datasets/Blood+Transfusion+Service+Center
+
 ## Dataset Description
 
     Dataset contains information about blood donors of the Blood Transfusion Service Center
