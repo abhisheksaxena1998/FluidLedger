@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blood Donation App</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Icon -->
+    <link rel="icon" href="/images/img2.png" type="image/gif" sizes="16x16">
+    <!-- Custom Css -->
+    <link href="/css/index.css" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+<div class="card col-md-6" style="margin: 1rem auto;display: block;">
+{% if successmsg %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{successmsg}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+<h1 style="text-align: center;">Volunteer Registration Form</h1>
+    <form style="color: #757575;padding: 1rem;" action="/submitresponse" method="POST" autocomplete="off">
+        {% csrf_token %}
+        <div class="md-form">
+            <input type="text" id="username" name="username" class="form-control">
+            <label for="username">Username</label>
+        </div>
+        <div class="md-form">
+            <input type="number" id="userage" name="userage" class="form-control">
+            <label for="userage">User Age</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="userlocation" name="userlocation" class="form-control">
+            <label for="userlocation">User Location</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="usercontact" name="usercontact" class="form-control">
+            <label for="usercontact">User Contact</label>
+        </div>
+        <p style="text-align: left;">Select Your Gender</p>
+        <div class="checkboxdiv">
+            <select name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <hr>
+        <p style="text-align: left;">Select Your Blood Group</p>
+        <div>
+            <select name="bloodgroup" style="width: 15rem;">
+                <option value="O+" selected="true">O+</option>
+                <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+        <hr>
+        <p style="text-align: left;">Select Your Preference</p>
+        <div class="checkboxdiv">
+            <select name="preference">
+                <option value="donor">Donor</option>
+                <option value="acceptor">Acceptor</option>
+            </select>
+        </div>
+        <div class="md-form">
+            <input type="text" id="recent" name="recent" class="form-control">
+            <label for="recent">How recently did you donate the blood</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="frequent" name="frequent" class="form-control">
+            <label for="frequent">How frequently did you donate the blood</label>
+        </div>
+         <div class="md-form">
+            <input type="text" id="monetary" name="monetary" class="form-control">
+            <label for="monetary">How ml value did you donate the blood</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="times" name="times" class="form-control">
+            <label for="times">How many times did you donate</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="latitude" name="latitude" class="form-control">
+            <label for="latitude">Latitude</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="longitude" name="longitude" class="form-control">
+            <label for="longitude">Longitude</label>
+        </div>
+        <input type="submit" value="Register" class="btn btn-primary" style="display: block;margin: 1rem;">
+    </form>
+</div>
+   <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript"></script>
+</body>
+</html>
