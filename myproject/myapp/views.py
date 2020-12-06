@@ -84,6 +84,7 @@ def detaileduser(request):
 
 def submitdetaileduser(request):
     user = DetailedUser()
+    user.username = request.POST['username']    
     user.name = request.POST["name"]
     user.age = request.POST["age"]
     user.country = request.POST["country"]
@@ -153,16 +154,15 @@ def matchAlgorithm(currentuser,allusers):
 
 
 def mydetails(request,requestname):
-    try:
-        currentuser = DetailedUser.objects.filter(username=requestname).first()
-        allusers = list(DetailedUser.objects.all())
-        matchedusers = matchAlgorithm(currentuser,allusers)
-        return render(request,'mydetails.html',{
-            "currentuser" : currentuser,
-            "matchedusers" : matchedusers
-            })
-    except:
-        return render(request,'detailregister.html')
+    currentuser = DetailedUser.objects.filter(username=requestname).first()
+    allusers = list(DetailedUser.objects.all())
+    print (currentuser.bloodgroup)
+    matchedusers = matchAlgorithm(currentuser,allusers)
+    return render(request,'mydetails.html',{
+        "currentuser" : currentuser,
+        "matchedusers" : matchedusers
+        })
+    
 
 def makepost(request):
     return render(request,'post.html')
