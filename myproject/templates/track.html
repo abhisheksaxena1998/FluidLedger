@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% block title %}Post{% endblock %}
+{% block content %}
+<div id="mymap" class="mycenter" class="col-md-6">
+
+<ul class="list-group" style="margin-bottom: 1rem">
+	<li class="list-group-item">Latitude: ${obj.latitude}</li>
+	<li class="list-group-item">Longitute: ${obj.longitude}</li>
+	<li class="list-group-item">Region: ${obj.region_name}</li>
+	<li class="list-group-item">City: ${obj.city}</li>
+	<li class="list-group-item">Zip Code: ${obj.zip_code}</li>
+</ul>
+
+ <iframe width="500" height="400" frameborder="0" :src="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" style="margin: 0 auto;display: block;">
+     </iframe>
+     <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;margin: 0 auto;display: block;">
+        <a id="largeMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">View Larger Map</a> &nbsp; | &nbsp;
+        <a id="dirMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">Get Directions</a>
+	</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+const vueComponent = new Vue({
+	delimiters:['${', '}'],
+	el : "#mymap",
+	data : {
+	obj : {},
+	title : "Track My Location",
+	mapUrl : ''
+	},
+	methods : {
+		async fetchApi(){
+		 const API = "https://freegeoip.app/json/"
+		 fetch(API)
+  		 .then(res => res.json())
+  		 .then(data => this.obj = data)
+  		 .then(() => this.mapUrl = `https://www.bing.com/maps/embed?h=400&w=500&cp=${this.obj.latitude}~${this.obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`)
+  		 .then(() => console.log(this.mapUrl))
+		}
+	},
+	mounted(){
+	this.fetchApi()
+	}
+	})
+</script>
+{% endblock %}

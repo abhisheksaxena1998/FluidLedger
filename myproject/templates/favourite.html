@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% block title %}Favourites{% endblock %}
+{% block content %}
+{% if add == True %}
+<div class="col-md-6" style="margin: 0 auto;">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Successfully Added</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+{% endif %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="margin: 0 auto 5rem auto;text-align:center">
+            {% load static %}
+            <table class="table" style="background-color: white;">
+                <thead>
+                  <tr>
+                    <th scope="col">Added By</th>
+                    <th scope="col">Post Title</th>
+                    <th scope="col">Date Added</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for favourite in favourites %}
+                    <tr>
+                        <td>{{favourite.username}}
+                        <td>{{favourite.posttitle}}</td>
+                        <td>{{favourite.date}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

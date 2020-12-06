@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% block title %}Matched Users{% endblock %}
+{% block content %}
+{% if matchedusers %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="margin: 0 auto 5rem auto;text-align:center">
+            {% load static %}
+            <table class="table" style="background-color: white;">
+                <thead>
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Send whatsapp</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">BloodGroup</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Role</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for matcheduser in matchedusers %}
+                    <tr>
+                        <td>{{matcheduser.username}}</td>
+                        <td>{{matcheduser.name}}</td>
+                        <td><a href="https://wa.me/+91{{matcheduser.whatsapp}}">Click To Send Message</td>
+                        <td>{{matcheduser.country}}</td>
+                        <td>{{matcheduser.age}}</td>
+                        <td>{{matcheduser.bloodgroup}}</td>
+                        <td>{{matcheduser.gender}}</td>
+                        <td>{{matcheduser.role}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

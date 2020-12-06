@@ -1,0 +1,34 @@
+{% extends 'index.html' %} 
+{% load crispy_forms_tags %} 
+{% block title%} UserFeedBack {% endblock %} 
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="margin: 0 auto;">
+      {% if feedback == True %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>FeedBack Submitted</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+      <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/image4.jpg" class="img-fluid" style="margin: 1rem auto;height: 15rem;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);display: block;">
+      <form style="margin-top: 5rem;" method="GET" action="{% url 'submituserfeedbackform' %}">
+        <div class="form-group shadow-textarea">
+          <textarea class="form-control z-depth-1" id="title" name="title" rows="1"
+            placeholder="Subject Title here..."></textarea>
+        </div>
+        <div class="form-group shadow-textarea">
+          <textarea class="form-control z-depth-1" id="subject" name="subject" rows="5"
+            placeholder="Write something here... about FeedBack"></textarea>
+        </div>
+        <div class="form-group" style="text-align: center;">
+          <input type="submit" style="display: block;margin: 1rem auto 0 auto;text-align: center;"
+            class="btn peach-gradient" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

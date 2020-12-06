@@ -1,0 +1,1 @@
+web: gunicorn placementdrive.wsgi --log-file=-

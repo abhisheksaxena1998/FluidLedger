@@ -1,119 +1,310 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Blood Donation App</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <!-- Icon -->
-    <link rel="icon" href="/images/img2.png" type="image/gif" sizes="16x16">
-    <!-- Custom Css -->
-    <link href="/css/index.css" rel="stylesheet">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/css/mdb.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    <title>{% block title %}Serum Ledger{% endblock %}</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/group-blood-donation.png" type="image/gif" sizes="16x16" />
+    <style>
+        .pace {
+      -webkit-pointer-events: none;
+      pointer-events: none;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .pace-inactive {
+      display: none;
+    }
+
+    .pace .pace-progress {
+      background: #29d;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      height: 2px;
+    }
+  </style>
 </head>
 
-<body>
-<div class="card col-md-6" style="margin: 1rem auto;display: block;">
-{% if successmsg %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>{{successmsg}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-{% endif %}
-<h1 style="text-align: center;">Volunteer Registration Form</h1>
-    <form style="color: #757575;padding: 1rem;" action="/submitresponse" method="POST" autocomplete="off">
-        {% csrf_token %}
-        <div class="md-form">
-            <input type="text" id="username" name="username" class="form-control">
-            <label for="username">Username</label>
+<body style="margin-bottom: 20rem;" class="amy-crisp-gradient">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+        <img class="navbar-brand" src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/logo.png" style="height: 4rem;width: 4rem;" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" style="font-weight: bold;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}" style="font-weight: bold;">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userfeedbackform' %}" style="font-weight: bold;">FeedBack and Suggestion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'groupmembers' %}" style="font-weight: bold;">Group Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'emergency' %}" style="font-weight: bold;">Emergency</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'track' %}" style="font-weight: bold;">Track</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" style="margin-right: 8rem">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold;">
+                        Hi {{ user.get_username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'account_change_password' %}" style="font-weight: bold;">Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}" style="font-weight: bold;">
+                            Log Out</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/getfavourite/{{user.get_username}}" style="font-weight: bold;">
+                            My Favourites</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/detaileduser" style="font-weight: bold;">
+                            Register As A Volunteer</a>
+                        <a class="dropdown-item" href="/vieweditdetails/{{user.get_username}}" style="font-weight: bold;">
+                            Edit / Update As A Volunteer</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/mydetails/{{user.get_username}}" style="font-weight: bold;">
+                            Make a match</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/makepost" style="font-weight: bold;">
+                            Make A Post</a>
+                    </div>
         </div>
-        <div class="md-form">
-            <input type="number" id="userage" name="userage" class="form-control">
-            <label for="userage">User Age</label>
+        </li>
+        {% else %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold;">
+                Register
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'account_signup' %}" style="font-weight: bold;">
+                    Sign Up</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'account_login' %}" style="font-weight: bold;">
+                    Sign In</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'account_reset_password' %}" style="font-weight: bold;">
+                    Forgot Password</a>
+            </div>
+        </li>
+        {% endif %}
+        </ul>
         </div>
-        <div class="md-form">
-            <input type="text" id="userlocation" name="userlocation" class="form-control">
-            <label for="userlocation">User Location</label>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 form-group shadow-textarea" style="margin: 1rem auto 1rem auto;">
+                <form method="GET" action="{% url 'search' %}">
+                    <input class="form-control z-depth-1" type="search" placeholder="Search ...." aria-label="Search" name="query" id="query" />
+                    <button class="btn peach-gradient" type="submit" style="display: block;margin: 1rem auto 1rem auto;">
+                        Search
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="md-form">
-            <input type="text" id="usercontact" name="usercontact" class="form-control">
-            <label for="usercontact">User Contact</label>
+    </div>
+    <div class="container-fluid" style="margin-bottom: 1rem;">
+        {% block content %}
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <h1 class="h1-responsive" style="color: white;font-weight: bold;text-align: center;margin: 0 auto;">
+                    Serum Ledger </h1>
+                <h1 class="h1-responsive" style="color: white;font-weight: bold;text-align: center;margin: 0 auto;">
+                    #<span class="typed"></span>
+                </h1>
+            </div>
         </div>
-        <p style="text-align: left;">Select Your Gender</p>
-        <div class="checkboxdiv">
-            <select name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container my-5 " class="blue-gradient" style="color: white;">
+                    <!--Section: Content-->
+                    <section class="dark-grey-text" style="padding: 1rem;" class="blue-gradient">
+                        <!-- Grid row -->
+                        <div class="row">
+                            <!-- Grid column -->
+                            <div class="col-md-6" style="margin: 0 auto;">
+                                <div class="view">
+                                    <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/image1.jpg" class="img-fluid" alt="smaple image" />
+                                    <h1 class="h1-responsive" style="text-align: center;margin: 1rem auto 0 auto;display: block;font-size: 1rem;font-weight: bold;color: white;">
+                                        #Serum Ledger
+                                    </h1>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                        </div>
+                        <!-- Grid row -->
+                    </section>
+                    <!--Section: Content-->
+                </div>
+            </div>
         </div>
-        <hr>
-        <p style="text-align: left;">Select Your Blood Group</p>
-        <div>
-            <select name="bloodgroup" style="width: 15rem;">
-                <option value="O+" selected="true">O+</option>
-                <option value="O-">O-</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-            </select>
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="margin: 1rem auto 0 auto;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">
+                            {{post.title}}
+                        </h5>
+                        <p class="card-text">{{post.description}}</p>
+                        <p class="card-text">{{post.date}}</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                {% if user.is_authenticated %}
+                                <a href="/addtofavourite/{{user.get_username}}/{{post.id}}" class="badge badge-warning" style="margin: 0 auto;width: 100%">Add To My Favourites</a>
+                                {% else %}
+                                <a href="{% url 'account_login' %}" class="badge badge-warning" style="margin: 0 auto;width: 100%">Login
+                                    To Add To My Favourites</a>
+                                {% endif %}
+                            </li>
+                            <li class="list-group-item">
+                                <a href="whatsapp://send?text=%0aTitle: {{post.title}}%0aDate Added: {{post.date}}%0aDescription: {{post.description}}%0aStay tuned for more at Arogya Datta%0ahttps://plasmabloodbankmajor.herokuapp.com/" class="badge badge-success" style="margin: 0 auto;width: 100%" data-action="share/whatsapp/share">Share By WhatsApp</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{% url 'userfeedbackform' %}" class="badge badge-danger" style="margin: 0 auto;width: 100%">Send FeedBack</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            {% endfor %}
         </div>
-        <hr>
-        <p style="text-align: left;">Select Your Preference</p>
-        <div class="checkboxdiv">
-            <select name="preference">
-                <option value="donor">Donor</option>
-                <option value="acceptor">Acceptor</option>
-            </select>
-        </div>
-        <div class="md-form">
-            <input type="text" id="recent" name="recent" class="form-control">
-            <label for="recent">How recently did you donate the blood</label>
-        </div>
-        <div class="md-form">
-            <input type="text" id="frequent" name="frequent" class="form-control">
-            <label for="frequent">How frequently did you donate the blood</label>
-        </div>
-         <div class="md-form">
-            <input type="text" id="monetary" name="monetary" class="form-control">
-            <label for="monetary">How ml value did you donate the blood</label>
-        </div>
-        <div class="md-form">
-            <input type="text" id="times" name="times" class="form-control">
-            <label for="times">How many times did you donate</label>
-        </div>
-        <div class="md-form">
-            <input type="text" id="latitude" name="latitude" class="form-control">
-            <label for="latitude">Latitude</label>
-        </div>
-        <div class="md-form">
-            <input type="text" id="longitude" name="longitude" class="form-control">
-            <label for="longitude">Longitude</label>
-        </div>
-        <input type="submit" value="Register" class="btn btn-primary" style="display: block;margin: 1rem;">
-    </form>
-</div>
-   <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {% endblock %}
+    </div>
+    <footer class="fixed-bottom" style="bottom: -1rem;">
+        <p style="text-align:center;display: block;color: white;background-color: black;font-size: 0.7rem;">
+            <i class="fas fa-copyright"></i>
+            Serum Ledger Copyright 2020 / Image: Credits https://www.freepik.com/
+        </p>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- JQuery -->
+    <!-- JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/js/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $(".typed").typed({
+            strings: [
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+                "Blood",
+                "Plasma",
+                "Donate",
+                "Humanity",
+                "Saves Lifes",
+            ],
+            // Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
+            stringsElement: null,
+            // typing speed
+            typeSpeed: 10,
+            // time before typing starts
+            startDelay: 1200,
+            // backspacing speed
+            backSpeed: 10,
+            // time before backspacing
+            backDelay: 500,
+            // loop
+            loop: true,
+            // false = infinite
+            loopCount: 5,
+            // show cursor
+            showCursor: false,
+            // character for cursor
+            cursorChar: "|",
+            // attribute to type (null == text)
+            attr: null,
+            // either html or text
+            contentType: "html",
+            // call when done callback function
+            callback: function() {},
+            // starting callback function before each string
+            preStringTyped: function() {},
+            //callback for every typed string
+            onStringTyped: function() {},
+            // callback for reset
+            resetCallback: function() {}
+        });
+    });
+    </script>
 </body>
+
 </html>

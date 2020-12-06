@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block title %}Emergency{% endblock %}
+{% block content %}
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 5rem auto;text-align:center">
+            {% load static %}
+            <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/image3.jpg" class="img-fluid" style="margin-top: 1.5rem;height: 15rem;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+            <ul class="list-group" style="margin: 1rem auto">
+                <li class="list-group-item"><a href="https://ors.gov.in/ebloodbankportal/">ORS.GOV.IN</a></li>
+                 <li class="list-group-item"><a href="https://indianhelpline.com/BLOOD-BANKS/">INDIAN HELP LINE BLOOD BANK</a></li>
+                 <li class="list-group-item"><a href="tel:044-24631500">BHARAT BLOOD BANK</a></li>
+                 <li class="list-group-item"><a href="tel:011-23359379 ">INDIAN RED CROSS SOCIETY</a></li>
+                 <li class="list-group-item"><a href="tel:07966772377 ">BLOOD HELPLINE CALL</a></li>
+            </ul>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

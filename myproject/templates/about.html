@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 5rem auto;text-align:center">
+            {% load static %}
+            <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/image2.jpg" class="img-fluid" style="margin-top: 1.5rem;height: 15rem;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+            <h6 class="h3-responsive" style="font-size: 2rem;text-align: center;color: white;font-weight: bold;margin-top: 1rem;"> # Anybody can give blood
+            </h6>
+            <h6 class="h3-responsive" style="font-size: 2rem;text-align: center;color: white;font-weight: bold;margin-top: 1rem;"> # Save a life
+            </h6>
+            <p style="color: white;font-weight: bold;">
+                With current situation in India due to COVID-19.We all need to stay
+                safe. Everyday numbers are increasing and people are suffering from this
+                coronavirus.We have find many alternatives to track the number of cases
+                and also found many ways to predict the cases in near future but many
+                apps are not currently working on the development of vaccine or plasma
+                therapy.With growing cases in India We have to fill the gap between donors
+                and acceptors.Under emergency many people post messages on social media asking for
+                help but this creates a lot of confusion.Lets track these problems under one
+                platform.Lets track them easily so that communication is at it’s best and
+                people are helped and served better
+            </p>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

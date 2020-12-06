@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block title %}Group Members{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 5rem auto;text-align:center">
+            {% load static %}
+            <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/institute.png" class="img-fluid" style="margin-top: 1.5rem;height: 15rem;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+            <h1 style="color: white;text-align: center;font-weight: bold;">Mentor</h1>
+            <ul class="list-group" style="margin: 1rem auto;font-weight: bold;">
+                <li class="list-group-item">DR. SHILPA BUDHKAR</li>
+         
+            </ul>
+            <h1 style="color: white;text-align: center;font-weight: bold;">Students</h1>
+            <ul class="list-group" style="margin: 1rem auto;font-weight: bold;">
+                <li class="list-group-item">Prince Gaur 9917103240</li>
+                <li class="list-group-item">Abhishek Kumar Saxena 9917103246</li>
+                <li class="list-group-item">Ishjot Singh Ahluwalia 9917103256</li>
+            </ul>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

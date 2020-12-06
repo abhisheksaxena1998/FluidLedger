@@ -1,0 +1,25 @@
+{% extends 'index.html' %} 
+{% load crispy_forms_tags %}
+ {% block title %}Sign UpForm{% endblock %} 
+ {% block content %}
+<div class="col-md-4" style="margin:1rem auto 1rem auto;">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Strong Password is recommended</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <h5 class="h5-responsive" style="text-align: center;color: white;font-weight: bold;">
+        Sign Up Form
+    </h5>
+    <hr />
+    <form method="POST" style="color:white;font-weight: bold;">
+        {% csrf_token %} {{ form|crispy }}
+        <button type="submit" value="SignUp" class="btn peach-gradient"
+            style="margin: 0 auto;display: block;margin-top: 2px;">
+            Sign Up
+        </button>
+    </form>
+</div>
+
+{% endblock %}

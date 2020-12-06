@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Post{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 5rem auto;text-align:center">
+              {% if message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Posted Successfully</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            <form class="text-center border border-light" action="/submitpost" style="background: white;padding: 1rem;margin-bottom: 1rem;" method="POST">
+                {% csrf_token %}
+                <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" value="{{ user.get_username }}" readonly="true" name="username" id="username">
+                <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Title" name="title" id="title">
+                <!-- Message -->
+                <div class="form-group">
+                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="5" placeholder="Message" name="description" id="description"></textarea>
+                </div>
+                <button class="btn btn-info btn-block" type="submit">Send</button>
+            </form>
+            <a href="{% url 'index' %}" style="margin:0rem auto 0rem auto;" class="btn peach-gradient">Go Back Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

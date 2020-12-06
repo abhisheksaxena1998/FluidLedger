@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+{% block title %}Detail Register{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 5rem auto;text-align:center">
+            <!-- Material input -->
+            <!-- Material form login -->
+            {% if message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Registered / Updated Successfully</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error Register Again / Register Once</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% if currentuser %}
+            <div class="card">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Register</strong>
+                </h5>
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+                    <!-- Form -->
+                    <form class="text-center" style="color: #757575;" action="{% url 'submitdetaileduser' %}" method="POST">
+                        {% csrf_token %}
+                        <!-- Email -->
+                        <div class="md-form">
+                            <input type="text" id="username" name="username" class="form-control" value="{{ user.get_username }}" readonly="true">
+                            <label for="firstname">Username</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="name" name="name" class="form-control" value="{{currentuser.username}}">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="country" name="country" class="form-control" value="{{currentuser.country}}">
+                            <label for="country">Country</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="age" name="age" class="form-control" value="{{currentuser.age}}">
+                            <label for="number">Age</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="tel" id="phone" name="phone" class="form-control" value="{{currentuser.whatsapp}}">
+                            <label for="phone">Phone</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="bloodgroup" id="bloodgroup" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                            <label for="bloodgroup">Choose a bloodgroup</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="gender" id="gender" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <label for="bloodgroup">Choose a gender</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="role" id="role" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="acceptor">Acceptor</option>
+                                <option value="donor">Donor</option>
+                            </select>
+                            <label for="bloodgroup">Choose a Role</label>
+                        </div>
+                        <!-- Sign in button -->
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register As A Detailed User</button>
+                    </form>
+                    <!-- Form -->
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Register</strong>
+                </h5>
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+                    <!-- Form -->
+                    <form class="text-center" style="color: #757575;" action="{% url 'submitdetaileduser' %}" method="POST">
+                        {% csrf_token %}
+                        <!-- Email -->
+                        <div class="md-form">
+                            <input type="text" id="username" name="username" class="form-control" value="{{ user.get_username }}" readonly="true">
+                            <label for="firstname">Username</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="country" name="country" class="form-control">
+                            <label for="country">Location</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="age" name="age" class="form-control">
+                            <label for="number">Age</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                            <label for="phone">Phone</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="bloodgroup" id="bloodgroup" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select> <label for="bloodgroup">Choose a bloodgroup</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="gender" id="gender" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <label for="bloodgroup">Choose a gender</label>
+                        </div>
+                        <div class="md-form">
+                            <select name="role" id="role" class="mdb-select md-form">
+                                <option value="default" selected="true">Select An Option</option>
+                                <option value="acceptor">Acceptor</option>
+                                <option value="donor">Donor</option>
+                            </select>
+                            <label for="bloodgroup">Choose a Role</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="recent" name="recent" class="form-control">
+                            <label for="recent">How recently did you donate the blood</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="frequent" name="frequent" class="form-control">
+                            <label for="frequent">How frequently did you donate the blood</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="monetary" name="monetary" class="form-control">
+                            <label for="monetary">How ml value did you donate the blood</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="time" name="time" class="form-control">
+                            <label for="time">How many times did you donate</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="latitude" name="latitude" class="form-control">
+                            <label for="latitude">Latitude</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="longitude" name="longitude" class="form-control">
+                            <label for="longitude">Longitude</label>
+                        </div>
+                        <!-- Sign in button -->
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register As A Detailed User</button>
+                    </form>
+                    <!-- Form -->
+                </div>
+            </div>
+            {% endif %}
+            <!-- Material form login -->
+        </div>
+    </div>
+</div>
+{% endblock %}
