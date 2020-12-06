@@ -1,3 +1,4 @@
+from os import stat
 from django.shortcuts import render
 from .models import *
 from .forms import *
@@ -113,6 +114,27 @@ def canBeDonatedByMethod(bloodgroup):
     "AB-" : ["AB-","A-","B-","O-"]
     }
     return d[bloodgroup]
+
+def predict_donation(cred,lat,lon):
+    import reverse_geocode
+    import joblib
+    import reverse_geocoder as rg
+
+    coordinates = (lat,lon)
+    #print (rg.search(coordinates)[0]['name'], rg.search(coordinates)[0]['admin1'])
+    mydict = {
+                "query" : f"{lat},{lon}",
+                "city" : rg.search(coordinates)[0]['name'],
+                "state" : rg.search(coordinates)[0]['admin1']
+            }
+    filename = 'donationpredictor.sav'
+    loaded_model = joblib.load(filename)
+    arg=loaded_model.predict([cred])[0]
+    if arg==1:
+        status=f"High probability of donation from {mydict[city]} city, {mydict[state]}"
+    else:
+        status=f"Low probability of donation from {mydict[city]} city, {mydict[state]}"
+    return status
 
 def matchAlgorithm(currentuser,allusers):
     canBeDonatedBy = canBeDonatedByMethod(currentuser.bloodgroup)
