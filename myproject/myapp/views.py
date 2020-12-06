@@ -115,26 +115,36 @@ def canBeDonatedByMethod(bloodgroup):
     }
     return d[bloodgroup]
 
-def predict_donation(cred,lat,lon):
+def predict(request):
     import reverse_geocode
     import joblib
     import reverse_geocoder as rg
 
-    coordinates = (lat,lon)
-    #print (rg.search(coordinates)[0]['name'], rg.search(coordinates)[0]['admin1'])
-    mydict = {
-                "query" : f"{lat},{lon}",
-                "city" : rg.search(coordinates)[0]['name'],
-                "state" : rg.search(coordinates)[0]['admin1']
-            }
-    filename = 'donationpredictor.sav'
-    loaded_model = joblib.load(filename)
-    arg=loaded_model.predict([cred])[0]
-    if arg==1:
-        status=f"High probability of donation from {mydict[city]} city, {mydict[state]}"
-    else:
-        status=f"Low probability of donation from {mydict[city]} city, {mydict[state]}"
-    return status
+    allusers = list(DetailedUser.objects.all())
+    print(allusers)
+    for user in allusers:
+        cred = [user.recent,user.frequent,user.monetary,user.time]
+        coordinates = (user.latitude,user.longitude)
+        #print (rg.search(coordinates)[0]['name'], rg.search(coordinates)[0]['admin1'])
+        mydict = {
+                        "query" : f"{coordinates[0]},{coordinates[1]}",
+                        "city" : rg.search(coordinates)[0]['name'],
+                        "state" : rg.search(coordinates)[0]['admin1']
+                    }
+        filename = 'donationpredictor.sav'
+        loaded_model = joblib.load(filename)
+        arg=loaded_model.predict([cred])[0]
+        if arg==1:
+            status=f"High probability of donation from {mydict[city]} city, {mydict[state]}"
+        else:
+            status=f"Low probability of donation from {mydict[city]} city, {mydict[state]}"
+
+        print(status)
+    return HttpResponse("end")
+
+    
+
+
 
 def matchAlgorithm(currentuser,allusers):
     canBeDonatedBy = canBeDonatedByMethod(currentuser.bloodgroup)

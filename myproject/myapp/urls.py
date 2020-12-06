@@ -23,6 +23,7 @@ urlpatterns = [
     path('submitpost',views.submitpost,name='submitpost'),
     path('users/api',views.api,name='api'),
     path('vieweditdetails/<str:requestname>',views.vieweditdetails,name='vieweditdetails'),
-    path('track',views.track,name='track')
+    path('track',views.track,name='track'),
+    path('testpredict',views.predict,name='predict')
 ]
 
