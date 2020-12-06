@@ -135,9 +135,9 @@ def predict(request):
         loaded_model = joblib.load(filename)
         arg=loaded_model.predict([cred])[0]
         if arg==1:
-            status=f"High probability of donation from {mydict[city]} city, {mydict[state]}"
+            status=f"High probability of donation from {mydict['city']} city, {mydict['state']}"
         else:
-            status=f"Low probability of donation from {mydict[city]} city, {mydict[state]}"
+            status=f"Low probability of donation from {mydict['city']} city, {mydict['state']}"
 
         print(status)
     return HttpResponse("end")
