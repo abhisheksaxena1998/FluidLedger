@@ -117,7 +117,6 @@ def canBeDonatedByMethod(bloodgroup):
     return d[bloodgroup]
 
 def predict(user):
-    import reverse_geocode
     import joblib
     import reverse_geocoder as rg
 
