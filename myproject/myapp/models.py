@@ -37,4 +37,5 @@ class DetailedUser(models.Model):
     time = models.CharField(max_length=100)
     latitude = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
     

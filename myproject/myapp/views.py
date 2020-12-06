@@ -115,33 +115,28 @@ def canBeDonatedByMethod(bloodgroup):
     }
     return d[bloodgroup]
 
-def predict(request):
+def predict(user):
     import reverse_geocode
     import joblib
     import reverse_geocoder as rg
 
-    allusers = list(DetailedUser.objects.all())
-    print(allusers)
-    for user in allusers:
-        cred = [user.recent,user.frequent,user.monetary,user.time]
-        coordinates = (user.latitude,user.longitude)
-        #print (rg.search(coordinates)[0]['name'], rg.search(coordinates)[0]['admin1'])
-        mydict = {
-                        "query" : f"{coordinates[0]},{coordinates[1]}",
-                        "city" : rg.search(coordinates)[0]['name'],
-                        "state" : rg.search(coordinates)[0]['admin1']
-                    }
-        filename = 'donationpredictor.sav'
-        loaded_model = joblib.load(filename)
-        arg=loaded_model.predict([cred])[0]
-        if arg==1:
-            status=f"High probability of donation from {mydict['city']} city, {mydict['state']}"
-        else:
-            status=f"Low probability of donation from {mydict['city']} city, {mydict['state']}"
+    cred = [user.recent,user.frequent,user.monetary,user.time]
+    coordinates = (user.latitude,user.longitude)
+    #print (rg.search(coordinates)[0]['name'], rg.search(coordinates)[0]['admin1'])
+    mydict = {
+                    "query" : f"{coordinates[0]},{coordinates[1]}",
+                    "city" : rg.search(coordinates)[0]['name'],
+                    "state" : rg.search(coordinates)[0]['admin1']
+                }
+    filename = 'donationpredictor.sav'
+    loaded_model = joblib.load(filename)
+    arg=loaded_model.predict([cred])[0]
+    if arg==1:
+        status=f"High probability of donation from {mydict['city']} city, {mydict['state']}"
+    else:
+        status=f"Low probability of donation from {mydict['city']} city, {mydict['state']}"
 
-        print(status)
-    return HttpResponse("end")
-
+    return status
     
 
 
@@ -152,6 +147,7 @@ def matchAlgorithm(currentuser,allusers):
     donor = ["Donor","DONOR","donor"]
     for user in allusers:
         if user.bloodgroup in canBeDonatedBy and user.username != currentuser.username and (user.role in donor):
+            user.status = predict(user)
             matchedusers.append(user)
     return matchedusers
 
