@@ -15,6 +15,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/css/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
     <title>{% block title %}Serum Ledger{% endblock %}</title>
     <link rel="icon" href="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/group-blood-donation.png" type="image/gif" sizes="16x16" />
@@ -44,8 +52,10 @@
   </style>
 </head>
 
-<body style="margin-bottom: 20rem;" class="amy-crisp-gradient">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+<body style="background-image: url(static/26839.jpg);background-repeat: no-repeat;
+background-position: center;margin-bottom: 0 rem;
+background-attachment: fixed;background-size: cover;" class="amy-crisp-gradient">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white;">
         <img class="navbar-brand" src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/logo.png" style="height: 4rem;width: 4rem;" />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -73,6 +83,7 @@
             </ul>
             <ul class="navbar-nav ml-auto" style="margin-right: 8rem">
                 {% if user.is_authenticated %}
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold;">
                         Hi {{ user.get_username }}
@@ -135,16 +146,16 @@
         {% block content %}
         <div class="container-fluid">
             <div class="col-md-12">
-                <h1 class="h1-responsive" style="color: white;font-weight: bold;text-align: center;margin: 0 auto;">
+                <h1 class="h1-responsive" style="color:blue;font-weight: bold;text-align: center;margin: 0 auto;">
                     Serum Ledger </h1>
-                <h1 class="h1-responsive" style="color: white;font-weight: bold;text-align: center;margin: 0 auto;">
+                <h1 class="h1-responsive" style="color:dodgerblue;font-weight: bold;text-align: center;margin: 0 auto;">
                     #<span class="typed"></span>
                 </h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="container my-5 " class="blue-gradient" style="color: white;">
+                <div class="container my-5 " class="blue-gradient" style="color: blue;">
                     <!--Section: Content-->
                     <section class="dark-grey-text" style="padding: 1rem;" class="blue-gradient">
                         <!-- Grid row -->
@@ -153,7 +164,7 @@
                             <div class="col-md-6" style="margin: 0 auto;">
                                 <div class="view">
                                     <img src="https://raw.githubusercontent.com/IshjotSingh97/Arogya-Major-Project-Images/main/image1.jpg" class="img-fluid" alt="smaple image" />
-                                    <h1 class="h1-responsive" style="text-align: center;margin: 1rem auto 0 auto;display: block;font-size: 1rem;font-weight: bold;color: white;">
+                                    <h1 class="h1-responsive" style="text-align: center;margin: 1rem auto 0 auto;display: block;font-size: 1rem;font-weight: bold;color: blue;">
                                         #Serum Ledger
                                     </h1>
                                 </div>
@@ -206,7 +217,7 @@
     <footer class="fixed-bottom" style="bottom: -1rem;">
         <p style="text-align:center;display: block;color: white;background-color: black;font-size: 0.7rem;">
             <i class="fas fa-copyright"></i>
-            Serum Ledger Copyright 2020 / Image: Credits https://www.freepik.com/
+            Serum Ledger
         </p>
     </footer>
     <!-- Optional JavaScript -->

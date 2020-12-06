@@ -5,6 +5,13 @@
 <div class="col-md-4" style="margin:1rem auto 1rem auto;">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Strong Password is recommended</strong>
+        <script>
+            Swal.fire(
+                'Strong password recommended!',
+'Please enter strong password :(',
+'error'
+)
+            </script>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -20,6 +27,7 @@
             Sign Up
         </button>
     </form>
+    
 </div>
 
 {% endblock %}
