@@ -1,35 +1,38 @@
 {% extends 'index.html' %}
 {% block title %}Post{% endblock %}
 {% block content %}
-<script>
-	Swal.fire(
-	'Location tracked successfully !',
-	'Go Ahead !',
-	'success'
-			 )
+
  </script>
 <div id="mymap" class="mycenter" class="col-md-6" >
-	<iframe width="500" height="400" frameborder="0" :src="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" style="margin: 0 auto;display: block;">
+	<div class="col-md-6" style="margin: 0 auto">
+		<script>
+			Swal.fire(
+			'Location tracked successfully !',
+			'Go Ahead !',
+			'success'
+					 )
+					 </script>
+		<div class="card" style="width: auto;margin: 1rem auto;margin-bottom: 4rem;">
+		<div class="card-body card-text">
+		<ul class="list-group" style="margin-bottom: 1rem">
+			<li class="list-group-item">Latitude: ${obj.latitude}</li>
+			<li class="list-group-item">Longitute: ${obj.longitude}</li>
+			<li class="list-group-item">Region: ${obj.region_name}</li>
+			<li class="list-group-item">City: ${obj.city}</li>
+			<li class="list-group-item">Zip Code: ${obj.zip_code}</li>
+		</ul>
+					</div></div>
+		
+		 
+		
+		</div>
+	<iframe width="500rem" height="500rem" frameborder="0" :src="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" style="margin: 0 auto;display: block;">
 	</iframe>
 	<div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;margin: 0 auto;display: block;">
-	   <a id="largeMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">View Larger Map</a> &nbsp; | &nbsp;
-	   <a id="dirMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">Get Directions</a>
+	   <a id="largeMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=500rem&w=400rem&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">View Larger Map</a> &nbsp; | &nbsp;
+	   <a id="dirMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=500rem&w=400rem&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">Get Directions</a>
    </div>
- <div class="col-md-6" style="margin: 0 auto">
-<div class="card" style="width: auto;margin: 1rem auto;margin-bottom: 4rem;">
-<div class="card-body card-text">
-<ul class="list-group" style="margin-bottom: 1rem">
-	<li class="list-group-item">Latitude: ${obj.latitude}</li>
-	<li class="list-group-item">Longitute: ${obj.longitude}</li>
-	<li class="list-group-item">Region: ${obj.region_name}</li>
-	<li class="list-group-item">City: ${obj.city}</li>
-	<li class="list-group-item">Zip Code: ${obj.zip_code}</li>
-</ul>
-			</div></div>
-
  
-
-</div>
 </div>
 
 

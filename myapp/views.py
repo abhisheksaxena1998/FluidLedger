@@ -116,6 +116,7 @@ def canBeDonatedByMethod(bloodgroup):
     }
     return d[bloodgroup]
 
+
 def predict(user):
     import joblib
     import reverse_geocoder as rg
@@ -139,6 +140,11 @@ def predict(user):
     return status
     
 
+def distance(user1,user2):
+    coordinates1 = (user1.latitude,user1.longitude)
+    coordinates2 = (user1.latitude,user1.longitude)
+    from haversine import haversine
+    return haversine(coordinates1, coordinates2)
 
 
 def matchAlgorithm(currentuser,allusers):
