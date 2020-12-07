@@ -140,9 +140,8 @@ def predict(user):
     return status
     
 
-def distance(user1,user2):
-    coordinates1 = (user1.latitude,user1.longitude)
-    coordinates2 = (user1.latitude,user1.longitude)
+def distance(coordinates1,coordinates2):
+    
     from haversine import haversine
     return haversine(coordinates1, coordinates2)
 
@@ -154,6 +153,7 @@ def matchAlgorithm(currentuser,allusers):
     for user in allusers:
         if user.bloodgroup in canBeDonatedBy and user.username != currentuser.username and (user.role in donor):
             user.status = predict(user)
+            user.dist=distance((int(float(currentuser.latitude)),int(float(currentuser.longitude))),(int(float(user.latitude)),int(float(user.longitude))))
             matchedusers.append(user)
     return matchedusers
 

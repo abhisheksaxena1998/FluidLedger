@@ -1,3 +1,4 @@
+from math import dist
 from django.db import models
 
 # Create your models here.
@@ -24,6 +25,7 @@ class Favourite(models.Model):
 
 class DetailedUser(models.Model):
     username = models.CharField(max_length=100)
+    dist=models.IntegerField(null=True,blank=True,default=0)
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     whatsapp = models.CharField(max_length=100)
