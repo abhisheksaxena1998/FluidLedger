@@ -3,7 +3,7 @@
 {% block content %}
 
  </script>
-<div id="mymap" class="mycenter" class="col-md-6" >
+<div id="mymap" class="mycenter" class="col-md-4" style="text-align: center;">
 	<div class="col-md-6" style="margin: 0 auto">
 		
 		<div class="card" style="width: auto;margin: 1rem auto;margin-bottom: 4rem;">
@@ -28,11 +28,11 @@
 		
 		</div>
 		
-	<iframe width="500rem" height="500rem" frameborder="0" :src="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" style="margin: 0 auto;display: block;">
+	<iframe width="325" height="325" frameborder="0" :src="`https://www.bing.com/maps/embed?h=325&w=325&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" >
 	</iframe>
-	<div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;margin: 0 auto;display: block;">
-	   <a id="largeMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=500rem&w=400rem&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">View Larger Map</a> &nbsp; | &nbsp;
-	   <a id="dirMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?h=500rem&w=400rem&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">Get Directions</a>
+	<div style="white-space: nowrap; text-align: center;text-align: center;margin-bottom: 4rem;">
+	   <a id="largeMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">View Larger Map</a> &nbsp; | &nbsp;
+	   <a id="dirMapLink" target="_blank" :href="`https://www.bing.com/maps/embed?cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`">Get Directions</a>
    </div>
  
 </div>
