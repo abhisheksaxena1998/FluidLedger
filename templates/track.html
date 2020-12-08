@@ -5,14 +5,15 @@
  </script>
 <div id="mymap" class="mycenter" class="col-md-6" >
 	<div class="col-md-6" style="margin: 0 auto">
-		<script>
-			Swal.fire(
-			'Location tracked successfully !',
-			'Go Ahead !',
-			'success'
-					 )
-					 </script>
+		
 		<div class="card" style="width: auto;margin: 1rem auto;margin-bottom: 4rem;">
+			<script>
+				Swal.fire(
+				'Location tracked successfully !',
+				'Go Ahead !',
+				'success'
+						 )
+						 </script>
 		<div class="card-body card-text">
 		<ul class="list-group" style="margin-bottom: 1rem">
 			<li class="list-group-item">Latitude: ${obj.latitude}</li>
@@ -26,6 +27,7 @@
 		 
 		
 		</div>
+		
 	<iframe width="500rem" height="500rem" frameborder="0" :src="`https://www.bing.com/maps/embed?h=400&w=500&cp=${obj.latitude}~${obj.longitude}&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8`" scrolling="no" style="margin: 0 auto;display: block;">
 	</iframe>
 	<div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;margin: 0 auto;display: block;">
